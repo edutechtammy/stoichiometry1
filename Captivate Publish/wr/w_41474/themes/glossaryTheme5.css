@@ -1,0 +1,175 @@
+#reveal{
+	height: 458px;
+	margin-left:26px;
+}
+
+#intTitle, #intInstructions{
+	margin-left:35px;
+}
+
+.scroll-pane, #Search_Input_Container
+{
+	box-shadow: 3px 3px 7px #ccc;	
+}
+
+#Search_Result_Header{
+}
+
+#Glossary_Context_Container {
+	width: 190px;
+	border:0;
+}
+
+
+#content_bg {
+	
+	min-height: 250px;
+	
+}
+
+#Search_Input_Container
+{
+	width: 185px;
+    background-color: rgb(0, 100, 131);
+    padding: 5px 0 5px 5px;
+	margin:0;
+}
+
+
+#searchText
+{
+    font-style: italic;
+    font-weight: bold;
+    font: Verdana;
+    color: White;
+    padding: 0px;
+}
+
+#searchInput
+{
+    width: 100px;
+	height:10px;
+	-moz-border-radius:7px 7px 7px 7px ;
+    border-radius: 7px 7px 7px 7px ;
+}
+
+
+
+#Search_Container
+{
+	width: 190px;
+	
+	float: left;
+	margin-right: 20px;
+}
+
+#Search_Result_Header
+{
+    background-color: rgb(0, 100, 131);
+    padding: 5px 0 5px 15px;
+	float: left;
+	width: 395px;
+	color:white;
+}
+
+#Search_Result_Header
+{
+	-moz-border-radius:10px 10px 0 0 ;
+    border-radius: 10px 10px 0 0 ;
+}
+
+#Search_Input_Container
+{
+}
+	
+#Search_Result_Container
+{
+	padding: 15px 15px;
+	width: 380px;	border:0;
+	height: 230px;
+}
+#Navigation_Container
+{
+background: -moz-linear-gradient(left,  rgba(252,252,252,0) 0%, rgba(239,239,239,0.12) 49%, rgba(10,10,10,0.25) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(252,252,252,0)), color-stop(49%,rgba(239,239,239,0.12)), color-stop(100%,rgba(10,10,10,0.25))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left,  rgba(252,252,252,0) 0%,rgba(239,239,239,0.12) 49%,rgba(10,10,10,0.25) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left,  rgba(252,252,252,0) 0%,rgba(239,239,239,0.12) 49%,rgba(10,10,10,0.25) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left,  rgba(252,252,252,0) 0%,rgba(239,239,239,0.12) 49%,rgba(10,10,10,0.25) 100%); /* IE10+ */
+background: linear-gradient(left,  rgba(252,252,252,0) 0%,rgba(239,239,239,0.12) 49%,rgba(10,10,10,0.25) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fcfcfc', endColorstr='#400a0a0a',GradientType=1 ); /* IE6-9 */
+
+    background-color: rgb(0, 84, 104);
+	color:#FFF;
+}
+.NoValue {
+	color: white;
+}
+
+#Body_Container {
+	
+}
+
+.timelineNode {
+	margin-top:15px; 
+	border:2px solid white;	
+	border-radius: 50%;
+	width: 15px;
+ 	height: 15px; 
+	background-color: #ffffff;
+
+}
+
+.timelineNode:hover
+{
+    background-color: #004a61;
+}
+
+.timelineNode:active
+{
+    background-color: #40c3c3;
+}
+
+#tabs_content_container
+{
+    padding: 20px 30px;
+	background-color: #FFFFFF;
+	min-height: 250px;
+}
+
+
+
+#tabs_container { 
+	height:40px;
+	display: block;
+}
+
+#canvas {
+}
+
+#canvas-wrap { position:relative; width:600px; height:70px; }
+#canvas-wrap canvas { position:absolute; top:0; left:0; z-index:0 }
+
+
+
+
+.navNode .NoValue
+{
+	font-weight:bold;
+	color: grey;
+	font-style: normal;
+	text-decoration: none;
+}
+
+.navNode .HasValue
+{
+	font-weight:bold;
+	color: white;
+	font-style: normal;
+	text-decoration: none;
+}
+
+
+
+
+
+

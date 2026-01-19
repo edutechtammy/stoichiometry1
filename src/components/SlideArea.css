@@ -1,0 +1,211 @@
+/* SlideArea.css - Styles for slide content display */
+
+.slide-area {
+    width: 100%;
+    max-width: 880px;
+    height: 660px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Background/Thumbnail */
+.slide-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.slide-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Text Captions Layer */
+.slide-text-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.text-caption {
+    position: absolute;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+    pointer-events: auto;
+}
+
+/* Images Layer */
+.slide-images-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slide-image {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Shapes/Buttons Layer */
+.slide-shapes-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.slide-shape {
+    position: absolute;
+    padding: 0.5rem 1rem;
+    background-color: rgba(52, 152, 219, 0.1);
+    border: 1px solid #3498db;
+    border-radius: 4px;
+}
+
+.slide-shape.clickable {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.slide-shape.clickable:hover {
+    background-color: rgba(52, 152, 219, 0.3);
+    transform: scale(1.05);
+}
+
+/* Click Boxes Layer */
+.slide-clickboxes-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+.click-box {
+    position: absolute;
+    cursor: pointer;
+    border: 2px dashed rgba(52, 152, 219, 0.5);
+    background-color: rgba(52, 152, 219, 0.05);
+    transition: all 0.2s;
+}
+
+.click-box:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+}
+
+/* Highlight Boxes Layer */
+.slide-highlights-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.highlight-box {
+    position: absolute;
+    background-color: rgba(241, 196, 15, 0.3);
+    border: 2px solid #f39c12;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Slide Type Badge */
+.slide-type-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(52, 152, 219, 0.9);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Playing State */
+.slide-area.playing .slide-type-badge {
+    background-color: rgba(46, 204, 113, 0.9);
+}
+
+.slide-area.paused .slide-type-badge {
+    background-color: rgba(231, 76, 60, 0.9);
+}
+
+/* Slide Type Specific Styles */
+.slide-type-drag-drop {
+    border: 3px solid #e74c3c;
+}
+
+.slide-type-click-activity {
+    border: 3px solid #3498db;
+}
+
+.slide-type-walkthrough {
+    border: 3px solid #f39c12;
+}
+
+.slide-type-glossary {
+    border: 3px solid #9b59b6;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .slide-area {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 880 / 660;
+    }
+}
+
+@media (max-width: 600px) {
+    .text-caption {
+        font-size: 0.9rem;
+    }
+
+    .slide-type-badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
