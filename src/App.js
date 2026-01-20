@@ -20,6 +20,7 @@ function App() {
     const [showTOC, setShowTOC] = useState(false);
     const [showCaptions, setShowCaptions] = useState(false);
     const [audioTime, setAudioTime] = useState(0);
+    const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
     const currentSlide = lessonData.slides[currentSlideIndex];
     const totalSlides = lessonData.slides.length;
@@ -60,29 +61,35 @@ function App() {
         console.log('All assets loaded successfully');
     };
 
-    // Auto-advance when playing (but not on activity slides)
+    // Handle audio play state changes
+    const handleAudioPlayStateChange = (playing) => {
+        setIsAudioPlaying(playing);
+    };
+
+    // Handle audio ending - auto-advance to next slide
+    const handleAudioEnded = () => {
+        // Don't auto-advance on activity slides
+        const isActivitySlide = currentSlide?.type === 'drag-drop' || currentSlide?.type === 'click-activity';
+
+        if (!isActivitySlide) {
+            if (currentSlideIndex < totalSlides - 1) {
+                setCurrentSlideIndex(currentSlideIndex + 1);
+                setIsPlaying(true);
+            } else {
+                setIsPlaying(false);
+            }
+        }
+    };
+
+    // Pause on activity slides
     useEffect(() => {
         if (isPlaying && currentSlide) {
-            // Don't auto-advance on activity slides
             const isActivitySlide = currentSlide.type === 'drag-drop' || currentSlide.type === 'click-activity';
-
             if (isActivitySlide) {
-                // Pause on activity slides
                 setIsPlaying(false);
-                return;
             }
-
-            const timer = setTimeout(() => {
-                if (currentSlideIndex < totalSlides - 1) {
-                    setCurrentSlideIndex(currentSlideIndex + 1);
-                } else {
-                    setIsPlaying(false);
-                }
-            }, currentSlide.durationInSeconds * 1000);
-
-            return () => clearTimeout(timer);
         }
-    }, [isPlaying, currentSlideIndex, currentSlide, totalSlides]);
+    }, [currentSlide, isPlaying]);
 
     return (
         <div className="App">
@@ -136,6 +143,9 @@ function App() {
                             slideData={currentSlide}
                             isPlaying={isPlaying}
                             audioTime={audioTime}
+                            onNavigate={handleNavigate}
+                            onToggleTOC={() => setShowTOC(!showTOC)}
+                            onToggleCaptions={() => setShowCaptions(!showCaptions)}
                         />
                     ) : (
                         <div className="loading-screen">
@@ -163,6 +173,8 @@ function App() {
                         audioFiles={currentSlide.audio}
                         autoplay={isPlaying}
                         onTimeUpdate={setAudioTime}
+                        onPlayStateChange={handleAudioPlayStateChange}
+                        onAudioEnded={handleAudioEnded}
                     />
                 </div>
             )}

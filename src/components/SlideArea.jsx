@@ -7,6 +7,7 @@ import './SlideArea.css';
 
 // Import slide-specific components
 import Slide28137 from './slides/Slide28137';
+import FirstSlide from './FirstSlide';
 
 /**
  * SlideArea - Main rendering component for slides
@@ -14,7 +15,7 @@ import Slide28137 from './slides/Slide28137';
  * Applies correct master slide (Blank or Stoichiometry)
  * Implements timing-based element visibility based on audio playback
  */
-const SlideArea = ({ slideData, isPlaying, audioTime = 0 }) => {
+const SlideArea = ({ slideData, isPlaying, audioTime = 0, onNavigate, onToggleTOC, onToggleCaptions }) => {
 
     // Helper function to determine if element should be visible based on timing
     const isElementVisible = (element) => {
@@ -84,11 +85,11 @@ const SlideArea = ({ slideData, isPlaying, audioTime = 0 }) => {
 
     // Slides that should use Stoichiometry Master (based on Captivate data analysis)
     const stoichiometrySlides = [
-        'Slide3917', 'Slide28137', 'Slide31383', 'Slide31809', 'Slide33288',
-        'Slide33700', 'Slide33951', 'Slide37499', 'Slide37646', 'Slide39911',
+        'Slide28137', 'Slide31383', 'Slide31809', 'Slide33288',
+        'Slide33700', 'Slide33951', 'Slide37646', 'Slide39911',
         'Slide40210', 'Slide4755', 'Slide7173', 'Slide8701', 'Slide8887',
         'Slide9077', 'Slide9249', 'Slide18443', 'Slide22696', 'Slide23949',
-        'Slide39593', 'Slide40393', 'Slide41450', 'Slide9421', 'Slide9593'
+        'Slide39593', 'Slide40393', 'Slide9421', 'Slide9593'
     ];
 
     const usesStoichiometryMaster = stoichiometrySlides.includes(slideData.id);
@@ -99,6 +100,16 @@ const SlideArea = ({ slideData, isPlaying, audioTime = 0 }) => {
     // Route to specific slide components
     const renderSlide = () => {
         switch (slideData.id) {
+            case 'Slide3917':
+                return (
+                    <FirstSlide
+                        slideData={slideData}
+                        onNavigate={onNavigate}
+                        onToggleTOC={onToggleTOC}
+                        onToggleCaptions={onToggleCaptions}
+                    />
+                );
+
             case 'Slide28137':
                 return <Slide28137 slideData={slideData} isPlaying={isPlaying} />;
 

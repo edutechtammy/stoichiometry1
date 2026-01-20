@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './AudioPlayer.css';
 
-const AudioPlayer = ({ audioFiles, autoplay = false, onTimeUpdate }) => {
+const AudioPlayer = ({ audioFiles, autoplay = false, onTimeUpdate, onPlayStateChange, onAudioEnded }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -24,7 +24,12 @@ const AudioPlayer = ({ audioFiles, autoplay = false, onTimeUpdate }) => {
             }
         };
         const handleDurationChange = () => setDuration(audio.duration);
-        const handleEnded = () => setIsPlaying(false);
+        const handleEnded = () => {
+            setIsPlaying(false);
+            if (onAudioEnded) {
+                onAudioEnded();
+            }
+        };
         const handleLoadedMetadata = () => setDuration(audio.duration);
 
         audio.addEventListener('timeupdate', handleTimeUpdate);
@@ -53,12 +58,17 @@ const AudioPlayer = ({ audioFiles, autoplay = false, onTimeUpdate }) => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        if (isPlaying) {
-            audio.pause();
-        } else {
+        const newPlayState = !isPlaying;
+        if (newPlayState) {
             audio.play();
+        } else {
+            audio.pause();
         }
-        setIsPlaying(!isPlaying);
+        setIsPlaying(newPlayState);
+
+        if (onPlayStateChange) {
+            onPlayStateChange(newPlayState);
+        }
     };
 
     const handleSeek = (e) => {
